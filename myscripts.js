@@ -3,6 +3,7 @@ var numClasses = 0;
 
 const defaultColor = "#0000ff";
 
+// Adds Class Section
 function addClass() {
     numClasses++;
 
@@ -44,11 +45,33 @@ function addClass() {
     div.appendChild(title);
     div.appendChild(titlebox);
     div.appendChild(done);
-    div.appendChild(setColor);
+    //div.appendChild(setColor);
     div.appendChild(removeclassbutton);
     div.appendChild(addtaskbutton);
 
-    document.body.appendChild(div);
+    //document.body.appendChild(div);
+    document.getElementById("wrapper").appendChild(div);
+}
+
+// edits class title
+function editTitle(classNum) {
+    document.getElementById("title" + classNum).style.display = "none";
+    document.getElementById("titlebox" + classNum).style.display = "inline";
+    document.getElementById("titledonebutton" + classNum).style.display = "inline";
+}
+
+// done for class
+function doneTitle(classNum) {
+    let titleToAdd = document.querySelectorAll("#titlebox" + classNum)[0].value;
+    document.getElementById("titlebox" + classNum).style.display = "none";
+    document.getElementById("title" + classNum).style.display = "inline";
+    document.getElementById("title" + classNum).innerHTML = titleToAdd;
+    document.getElementById("titledonebutton" + classNum).style.display = "none";
+}
+
+// deletes class
+function removeClass(classNum) {
+    document.getElementById("class" + classNum).remove();
 }
 
 function addTask(classNum) {
@@ -86,6 +109,7 @@ function addTask(classNum) {
     document.getElementById("class" + classNum).appendChild(div);
 }
 
+// done for task
 function done(taskNum) {
     let taskToAdd = document.querySelectorAll("#taskbox" + taskNum)[0].value;
     document.getElementById("taskbox" + taskNum).style.display = "none";
@@ -94,34 +118,19 @@ function done(taskNum) {
     document.getElementById("donebutton" + taskNum).style.display = "none";
 }
 
+// edit task
 function edit(taskNum) {
     document.getElementById("text" + taskNum).style.display = "none";
     document.getElementById("taskbox" + taskNum).style.display = "inline";
     document.getElementById("donebutton" + taskNum).style.display = "inline";
 }
 
-function editTitle(classNum) {
-    document.getElementById("title" + classNum).style.display = "none";
-    document.getElementById("titlebox" + classNum).style.display = "inline";
-    document.getElementById("titledonebutton" + classNum).style.display = "inline";
-}
-
-function doneTitle(classNum) {
-    let titleToAdd = document.querySelectorAll("#titlebox" + classNum)[0].value;
-    document.getElementById("titlebox" + classNum).style.display = "none";
-    document.getElementById("title" + classNum).style.display = "inline";
-    document.getElementById("title" + classNum).innerHTML = titleToAdd;
-    document.getElementById("titledonebutton" + classNum).style.display = "none";
-}
-
-function removeClass(classNum) {
-    document.getElementById("class" + classNum).remove();
-}
-
+// deletes task
 function removeTask(taskNum) {
     document.getElementById("task" + taskNum).remove();
 }
 
+// set color of class border
 function setColor(classNum) {
     let colorSelect = document.createElement("input");
     colorSelect.setAttribute("type", "color");
